@@ -45,12 +45,12 @@ function Footer({ resumeUrl }) {
           </h4>
 
           <div className="flex gap-4 text-xl text-gray-400 mb-6">
-            <a href="#" className="hover:text-blue-400 transition"><FaLinkedin /></a>
-            <a href="#" className="hover:text-blue-400 transition"><FaGithub /></a>
-            <a href="#" className="hover:text-pink-400 transition"><FaInstagram /></a>
-            <a href="mailto:yourmail@gmail.com" className="hover:text-red-400 transition"><FaEnvelope /></a>
-            <a href="https://wa.me/91XXXXXXXXXX" className="hover:text-green-400 transition"><FaWhatsapp /></a>
-            <a href="tel:+91XXXXXXXXXX" className="hover:text-yellow-400 transition"><FaPhone /></a>
+            <a href="https://www.linkedin.com/in/anbumani-v" className="hover:text-blue-400 transition"><FaLinkedin /></a>
+            <a href="https://github.com/Anbu200512" className="hover:text-blue-400 transition"><FaGithub /></a>
+            <a href="https://www.instagram.com/its_.anbu?igsh=MW92NHljbTl4cXE2MA==" className="hover:text-pink-400 transition"><FaInstagram /></a>
+            <a href="mailto:anbuv0012@gmail.com" className="hover:text-red-400 transition"><FaEnvelope /></a>
+            <a href="https://wa.me/6374114513" className="hover:text-green-400 transition"><FaWhatsapp /></a>
+            <a href="tel:+6374114513" className="hover:text-yellow-400 transition"><FaPhone /></a>
           </div>
 
         </div>

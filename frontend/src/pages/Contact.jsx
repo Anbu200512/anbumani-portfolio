@@ -83,9 +83,9 @@ function Contact() {
           </p>
 
           <div className="space-y-4 text-gray-300">
-            <p>📧 yourmail@gmail.com</p>
-            <p>📱 +91 XXXXX XXXXX</p>
-            <p>📍 Tamil Nadu, India</p>
+            <p>📧 anbuv0012@gmail.com</p>
+            <p>📱 +91 6374114513</p>
+            <p>📍 Villupuram, Tamilnadu, India</p>
           </div>
         </motion.div>
 

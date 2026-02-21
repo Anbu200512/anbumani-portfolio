@@ -135,7 +135,7 @@ useEffect(() => {
             <div className="flex flex-wrap gap-6 mb-8">
               {/* GitHub */}
               <motion.a
-                href="https://github.com/YOUR_USERNAME"
+                href="https://github.com/Anbu200512"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.3, rotate: 8 }}
@@ -147,7 +147,7 @@ useEffect(() => {
 
               {/* LinkedIn */}
               <motion.a
-                href="https://linkedin.com/in/YOUR_USERNAME"
+                href="https://www.linkedin.com/in/anbumani-v"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.3, rotate: -8 }}
@@ -159,7 +159,7 @@ useEffect(() => {
 
               {/* Instagram */}
               <motion.a
-                href="https://instagram.com/YOUR_USERNAME"
+                href="https://www.instagram.com/its_.anbu?igsh=MW92NHljbTl4cXE2MA=="
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.3 }}
@@ -171,7 +171,7 @@ useEffect(() => {
 
               {/* Email */}
               <motion.a
-                href="mailto:yourmail@gmail.com"
+                href="mailto:anbuv0012@gmail.com"
                 whileHover={{ scale: 1.3 }}
                 whileTap={{ scale: 0.9 }}
                 className="text-gray-400 hover:text-red-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]"
@@ -181,7 +181,7 @@ useEffect(() => {
 
               {/* WhatsApp */}
               <motion.a
-                href="https://wa.me/91XXXXXXXXXX"
+                href="https://wa.me/6374114513"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.3 }}
@@ -193,7 +193,7 @@ useEffect(() => {
 
               {/* Call */}
               <motion.a
-                href="tel:+91XXXXXXXXXX"
+                href="tel:+6374114513"
                 whileHover={{ scale: 1.3 }}
                 whileTap={{ scale: 0.9 }}
                 className="text-gray-400 hover:text-yellow-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(234,179,8,0.8)]"
