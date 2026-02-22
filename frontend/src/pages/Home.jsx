@@ -19,6 +19,9 @@ function Home() {
 
   const [resumeUrl, setResumeUrl] = useState("");
   const [resumeName, setResumeName] = useState("");
+
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/resume`)
       .then((res) => res.json())
@@ -30,76 +33,77 @@ function Home() {
       });
   }, []);
 
-// Fetch Featured Projects
-useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/api/projects?featured=true`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        const filtered = data.data.filter(
-          (project) => project.category !== "freelance"
-        );
-        setFeaturedProjects(filtered);
-      }
-    })
-    .catch((err) => console.error("Projects fetch error:", err));
-}, []);
+  // Fetch Featured Projects
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/projects?featured=true`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          const filtered = data.data.filter(
+            (project) => project.category !== "freelance",
+          );
+          setFeaturedProjects(filtered);
+        }
+      })
+      .catch((err) => console.error("Projects fetch error:", err));
+  }, []);
 
+  // Fetch Skills
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/api/skills`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setSkills(data.data);
+        }
+      })
+      .catch((err) => console.error("Skills fetch error:", err));
+  }, []);
 
-// Fetch Skills
-useEffect(() => {
-  fetch(`${import.meta.env.VITE_API_URL}/api/skills`)
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        setSkills(data.data);
-      }
-    })
-    .catch((err) => console.error("Skills fetch error:", err));
-}, []);
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.4 }}
+      initial={isMobile ? false : { opacity: 0 }}
+      animate={isMobile ? false : { opacity: 1 }}
+      exit={isMobile ? false : { opacity: 0 }}
+      transition={isMobile ? { duration: 0 } : { duration: 0.4 }}
       className="text-white"
     >
       {/* HERO */}
 
       <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        {/* Animated Grid Background */}
+        {/* Grid Background */}
         <div className="absolute inset-0 -z-30 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] opacity-20"></div>
 
-        {/* Animated Gradient Blobs */}
+        {/* Gradient Blobs */}
         <motion.div
-          animate={{ scale: [1, 1.3, 1] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute w-[600px] h-[600px] bg-blue-500/20 blur-[150px] rounded-full -z-20"
+          animate={isMobile ? false : { scale: [1, 1.3, 1] }}
+          transition={isMobile ? {} : { duration: 12, repeat: Infinity }}
+          className="absolute w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-500/20 blur-[40px] md:blur-[120px] rounded-full"
         />
 
         <motion.div
-          animate={{ scale: [1.2, 1, 1.2] }}
-          transition={{ duration: 15, repeat: Infinity }}
+          animate={isMobile ? false : { scale: [1.2, 1, 1.2] }}
+          transition={isMobile ? {} : { duration: 15, repeat: Infinity }}
           className="absolute right-0 w-[600px] h-[600px] bg-purple-500/20 blur-[150px] rounded-full -z-20"
         />
 
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.2 } },
-          }}
-          className="max-w-6xl w-full grid md:grid-cols-2 gap-16 items-center"
-        >
+        <div className="max-w-6xl w-full grid md:grid-cols-2 gap-16 items-center">
           {/* LEFT SIDE */}
           <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-            }}
+            initial={isMobile ? false : { opacity: 0, y: 40 }}
+            animate={isMobile ? false : { opacity: 1, y: 0 }}
+            transition={isMobile ? {} : { duration: 0.8 }}
           >
             <p className="text-blue-400 font-medium mb-4">Hi, I'm</p>
 
@@ -116,7 +120,7 @@ useEffect(() => {
                   "Backend-Focused Engineer",
                   "Building Scalable Applications",
                 ]}
-                loop
+                loop={!isMobile}
                 cursor
                 cursorStyle="|"
                 typeSpeed={70}
@@ -131,82 +135,52 @@ useEffect(() => {
             </p>
 
             {/* Social Icons */}
-
             <div className="flex flex-wrap gap-6 mb-8">
-              {/* GitHub */}
-              <motion.a
-                href="https://github.com/Anbu200512"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3, rotate: 8 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-white text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-              >
-                <FaGithub />
-              </motion.a>
-
-              {/* LinkedIn */}
-              <motion.a
-                href="https://www.linkedin.com/in/anbumani-v"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3, rotate: -8 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-blue-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-              >
-                <FaLinkedin />
-              </motion.a>
-
-              {/* Instagram */}
-              <motion.a
-                href="https://www.instagram.com/its_.anbu?igsh=MW92NHljbTl4cXE2MA=="
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-pink-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(236,72,153,0.8)]"
-              >
-                <FaInstagram />
-              </motion.a>
-
-              {/* Email */}
-              <motion.a
-                href="mailto:anbuv0012@gmail.com"
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-red-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]"
-              >
-                <FaEnvelope />
-              </motion.a>
-
-              {/* WhatsApp */}
-              <motion.a
-                href="https://wa.me/6374114513"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-green-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(34,197,94,0.8)]"
-              >
-                <FaWhatsapp />
-              </motion.a>
-
-              {/* Call */}
-              <motion.a
-                href="tel:+6374114513"
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                className="text-gray-400 hover:text-yellow-400 text-2xl transition duration-300 hover:drop-shadow-[0_0_10px_rgba(234,179,8,0.8)]"
-              >
-                <FaPhone />
-              </motion.a>
+              {[
+                {
+                  icon: <FaGithub />,
+                  link: "https://github.com/Anbu200512",
+                },
+                {
+                  icon: <FaLinkedin />,
+                  link: "https://www.linkedin.com/in/anbumani-v",
+                },
+                {
+                  icon: <FaInstagram />,
+                  link: "https://www.instagram.com/its_.anbu?igsh=MW92NHljbTl4cXE2MA==",
+                },
+                {
+                  icon: <FaEnvelope />,
+                  link: "mailto:anbuv0012@gmail.com",
+                },
+                {
+                  icon: <FaWhatsapp />,
+                  link: "https://wa.me/6374114513",
+                },
+                {
+                  icon: <FaPhone />,
+                  link: "tel:+6374114513",
+                },
+              ].map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={isMobile ? {} : { scale: 1.2 }}
+                  whileTap={isMobile ? {} : { scale: 0.95 }}
+                  className="text-gray-400 hover:text-white text-2xl transition duration-300"
+                >
+                  {item.icon}
+                </motion.a>
+              ))}
             </div>
 
             {/* Buttons */}
             <div className="flex gap-4 flex-wrap">
               <motion.div
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={isMobile ? {} : { scale: 1.08 }}
+                whileTap={isMobile ? {} : { scale: 0.95 }}
               >
                 <Link
                   to="/projects"
@@ -217,8 +191,8 @@ useEffect(() => {
               </motion.div>
 
               <motion.div
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={isMobile ? {} : { scale: 1.08 }}
+                whileTap={isMobile ? {} : { scale: 0.95 }}
               >
                 <Link
                   to="/contact"
@@ -229,7 +203,7 @@ useEffect(() => {
               </motion.div>
 
               {resumeUrl && (
-                <motion.div whileHover={{ scale: 1.08 }}>
+                <motion.div whileHover={isMobile ? {} : { scale: 1.08 }}>
                   <a
                     href={`${import.meta.env.VITE_API_URL}/api/resume/download`}
                     className="px-6 py-3 border border-slate-700 hover:border-blue-500 rounded-lg"
@@ -243,20 +217,20 @@ useEffect(() => {
 
           {/* RIGHT SIDE PROFILE */}
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={isMobile ? false : { opacity: 0, x: 60 }}
+            animate={isMobile ? false : { opacity: 1, x: 0 }}
+            transition={isMobile ? {} : { duration: 0.8 }}
             className="relative flex justify-center"
           >
             <motion.div
-              animate={{ y: [0, -15, 0] }}
-              transition={{ duration: 4, repeat: Infinity }}
+              animate={isMobile ? false : { y: [0, -15, 0] }}
+              transition={isMobile ? {} : { duration: 4, repeat: Infinity }}
               className="relative"
             >
               <div className="absolute w-96 h-96 bg-blue-500/10 blur-3xl rounded-3xl"></div>
 
               <motion.div
-                whileHover={{ rotate: 3, scale: 1.05 }}
+                whileHover={isMobile ? {} : { rotate: 3, scale: 1.05 }}
                 className="relative p-[2px] rounded-3xl bg-gradient-to-br from-blue-400 via-purple-500 to-blue-400"
               >
                 <div className="bg-slate-950 rounded-3xl overflow-hidden shadow-2xl">
@@ -271,12 +245,12 @@ useEffect(() => {
               </motion.div>
             </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Scroll Down Indicator */}
+        {/* Scroll Indicator */}
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={isMobile ? false : { y: [0, 10, 0] }}
+          transition={isMobile ? {} : { duration: 2, repeat: Infinity }}
           className="absolute bottom-10 text-gray-400 text-sm"
         ></motion.div>
       </section>
