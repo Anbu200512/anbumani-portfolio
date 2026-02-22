@@ -559,16 +559,16 @@ function Home() {
       </section>
 
       {/* SKILLS PREVIEW */}
-      <section className="relative py-32 px-6 bg-slate-900/30 border-y border-slate-800 overflow-hidden">
+      <section className="relative py-20 md:py-32 px-6 bg-slate-900/30 border-y border-slate-800 overflow-hidden">
         {/* Background Glow */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 18, repeat: Infinity }}
-          className="absolute left-[-200px] top-20 w-[600px] h-[600px] bg-purple-500/10 blur-[140px] rounded-full -z-10"
+          animate={isMobile ? false : { scale: [1, 1.2, 1] }}
+          transition={isMobile ? {} : { duration: 18, repeat: Infinity }}
+          className="absolute left-[-80px] md:left-[-200px] top-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-500/10 blur-[60px] md:blur-[140px] rounded-full -z-10"
         />
 
         <motion.div
-          initial="hidden"
+          initial={isMobile ? false : "hidden"}
           whileInView="show"
           viewport={{ once: true }}
           variants={{
@@ -583,13 +583,13 @@ function Home() {
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-4xl font-bold text-center mb-20 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl font-bold text-center mb-12 md:mb-20 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
           >
             Technical Skills
           </motion.h2>
 
           {/* Categories Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
             {Array.isArray(skills) &&
               [
                 "Frontend",
@@ -611,17 +611,16 @@ function Home() {
                       hidden: { opacity: 0, y: 60 },
                       show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
                     }}
-                    whileHover={{ y: -8 }}
-                    className="group relative bg-slate-950 border border-slate-800 rounded-3xl p-8 shadow-xl transition-all duration-500"
+                    whileHover={isMobile ? {} : { y: -8 }}
+                    className="group relative bg-slate-950 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-xl transition-all duration-500"
                   >
-                    {/* Glow Border */}
                     <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-blue-500/40 transition duration-500 pointer-events-none"></div>
 
-                    <h3 className="text-xl font-semibold text-blue-400 mb-6">
+                    <h3 className="text-lg md:text-xl font-semibold text-blue-400 mb-5 md:mb-6">
                       {category}
                     </h3>
 
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 md:gap-3">
                       {skills
                         .filter(
                           (skill) =>
@@ -631,8 +630,8 @@ function Home() {
                         .map((skill) => (
                           <motion.span
                             key={skill._id}
-                            whileHover={{ scale: 1.1 }}
-                            className="text-sm bg-slate-800 border border-slate-700 px-4 py-2 rounded-full text-gray-300 hover:text-blue-400 hover:border-blue-500 transition"
+                            whileHover={isMobile ? {} : { scale: 1.1 }}
+                            className="text-xs md:text-sm bg-slate-800 border border-slate-700 px-3 md:px-4 py-1.5 md:py-2 rounded-full text-gray-300 hover:text-blue-400 hover:border-blue-500 transition"
                           >
                             {skill.name}
                           </motion.span>
@@ -644,16 +643,16 @@ function Home() {
         </motion.div>
       </section>
 
-      <section className="relative py-36 px-6 overflow-hidden">
+      <section className="relative py-20 md:py-36 px-6 overflow-hidden">
         {/* Background Glow */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute right-[-200px] top-20 w-[600px] h-[600px] bg-blue-500/10 blur-[150px] rounded-full -z-10"
+          animate={isMobile ? false : { scale: [1, 1.2, 1] }}
+          transition={isMobile ? {} : { duration: 20, repeat: Infinity }}
+          className="absolute right-[-80px] md:right-[-200px] top-20 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-500/10 blur-[60px] md:blur-[150px] rounded-full -z-10"
         />
 
         <motion.div
-          initial="hidden"
+          initial={isMobile ? false : "hidden"}
           whileInView="show"
           viewport={{ once: true }}
           variants={{
@@ -668,13 +667,13 @@ function Home() {
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-4xl font-bold text-center mb-24 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl font-bold text-center mb-14 md:mb-24 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
           >
             Academic & Technical Journey
           </motion.h2>
 
-          <div className="relative grid md:grid-cols-2 gap-16">
-            {/* Vertical Accent Line (Desktop) */}
+          <div className="relative grid md:grid-cols-2 gap-8 md:gap-16">
+            {/* Vertical Accent Line */}
             <div className="hidden md:block absolute left-1/2 top-0 h-full w-[2px] bg-gradient-to-b from-blue-400 to-purple-500 opacity-30"></div>
 
             {/* Education Card */}
@@ -683,24 +682,24 @@ function Home() {
                 hidden: { opacity: 0, x: -60 },
                 show: { opacity: 1, x: 0, transition: { duration: 0.8 } },
               }}
-              whileHover={{ y: -10 }}
-              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-10 shadow-xl transition-all duration-500"
+              whileHover={isMobile ? {} : { y: -10 }}
+              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-xl transition-all duration-500"
             >
               <div className="absolute -left-3 top-10 w-6 h-6 bg-blue-500 rounded-full hidden md:block"></div>
 
-              <h3 className="text-2xl font-semibold text-blue-400 mb-4">
+              <h3 className="text-xl md:text-2xl font-semibold text-blue-400 mb-4">
                 Bachelor of Engineering (B.E.)
               </h3>
 
-              <p className="text-gray-300 mb-2">
+              <p className="text-gray-300 mb-2 text-sm md:text-base">
                 Electronics and Communication Engineering
               </p>
 
-              <p className="text-gray-400 mb-6">
+              <p className="text-gray-400 mb-6 text-sm md:text-base">
                 Hindusthan College of Engineering and Technology • 2022 – 2026
               </p>
 
-              <p className="text-gray-300 leading-relaxed">
+              <p className="text-gray-300 leading-relaxed text-sm md:text-base">
                 Built strong analytical thinking, system-level understanding,
                 and problem-solving foundations through engineering coursework.
               </p>
@@ -712,16 +711,16 @@ function Home() {
                 hidden: { opacity: 0, x: 60 },
                 show: { opacity: 1, x: 0, transition: { duration: 0.8 } },
               }}
-              whileHover={{ y: -10 }}
-              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-10 shadow-xl transition-all duration-500"
+              whileHover={isMobile ? {} : { y: -10 }}
+              className="relative bg-slate-950 border border-slate-800 rounded-3xl p-6 md:p-10 shadow-xl transition-all duration-500"
             >
               <div className="absolute -left-3 top-10 w-6 h-6 bg-purple-500 rounded-full hidden md:block"></div>
 
-              <h3 className="text-2xl font-semibold text-purple-400 mb-6">
+              <h3 className="text-xl md:text-2xl font-semibold text-purple-400 mb-6">
                 Software Development Journey
               </h3>
 
-              <ul className="space-y-4 text-gray-300">
+              <ul className="space-y-3 md:space-y-4 text-gray-300 text-sm md:text-base">
                 <li className="flex items-start gap-3">
                   <span className="text-blue-400">✔</span>
                   Self-learned Full-Stack MERN Development
@@ -753,25 +752,25 @@ function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-40 px-6 text-center overflow-hidden">
-        {/* Animated Grid Background */}
-        <div className="absolute inset-0 -z-30 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:50px_50px] opacity-10"></div>
+      <section className="relative py-20 md:py-40 px-6 text-center overflow-hidden">
+        {/* Grid Background */}
+        <div className="absolute inset-0 -z-30 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:40px_40px] opacity-10"></div>
 
-        {/* Animated Glow Blobs */}
+        {/* Glow Blobs */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 12, repeat: Infinity }}
-          className="absolute left-[-200px] top-10 w-[600px] h-[600px] bg-blue-500/20 blur-[160px] rounded-full -z-20"
+          animate={isMobile ? false : { scale: [1, 1.2, 1] }}
+          transition={isMobile ? {} : { duration: 12, repeat: Infinity }}
+          className="absolute left-[-80px] md:left-[-200px] top-10 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-500/20 blur-[60px] md:blur-[160px] rounded-full -z-20"
         />
 
         <motion.div
-          animate={{ scale: [1.2, 1, 1.2] }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute right-[-200px] bottom-10 w-[600px] h-[600px] bg-purple-500/20 blur-[160px] rounded-full -z-20"
+          animate={isMobile ? false : { scale: [1.2, 1, 1.2] }}
+          transition={isMobile ? {} : { duration: 15, repeat: Infinity }}
+          className="absolute right-[-80px] md:right-[-200px] bottom-10 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-purple-500/20 blur-[60px] md:blur-[160px] rounded-full -z-20"
         />
 
         <motion.div
-          initial="hidden"
+          initial={isMobile ? false : "hidden"}
           whileInView="show"
           viewport={{ once: true }}
           variants={{
@@ -786,7 +785,7 @@ function Home() {
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent"
           >
             Let’s Build Something Great Together
           </motion.h2>
@@ -797,7 +796,7 @@ function Home() {
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-gray-300 text-lg leading-relaxed mb-12"
+            className="text-gray-300 text-base sm:text-lg leading-relaxed mb-8 md:mb-12"
           >
             I’m currently seeking full-time opportunities as a Full-Stack
             Developer. If you're looking for someone passionate about building
@@ -810,27 +809,30 @@ function Home() {
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="flex justify-center gap-6 flex-wrap"
+            className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6"
           >
-            {/* Primary Button */}
-            <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
+            <motion.div
+              whileHover={isMobile ? {} : { scale: 1.08 }}
+              whileTap={isMobile ? {} : { scale: 0.95 }}
+              className="w-full sm:w-auto"
+            >
               <Link
                 to="/contact"
-                className="relative px-10 py-4 bg-blue-500 hover:bg-blue-600 rounded-xl shadow-lg shadow-blue-500/40 transition font-medium"
+                className="block w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 bg-blue-500 hover:bg-blue-600 rounded-xl shadow-lg shadow-blue-500/40 transition font-medium"
               >
                 Get In Touch
               </Link>
             </motion.div>
 
-            {/* Resume Button */}
             {resumeUrl && (
               <motion.div
-                whileHover={{ scale: 1.08 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={isMobile ? {} : { scale: 1.08 }}
+                whileTap={isMobile ? {} : { scale: 0.95 }}
+                className="w-full sm:w-auto"
               >
                 <a
                   href={`${import.meta.env.VITE_API_URL}/api/resume/download`}
-                  className="px-10 py-4 border border-slate-700 hover:border-blue-500 rounded-xl transition font-medium"
+                  className="block w-full sm:w-auto px-8 md:px-10 py-3 md:py-4 border border-slate-700 hover:border-blue-500 rounded-xl transition font-medium"
                 >
                   Download Resume
                 </a>
