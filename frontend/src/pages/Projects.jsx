@@ -21,14 +21,20 @@ function Projects() {
 
   const toggleExpand = (id) => { setExpandedId(expandedId === id ? null : id); };
 
-  useEffect(() => {
+useEffect(() => {
   fetch(
     `${import.meta.env.VITE_API_URL}/api/projects?page=${currentPage}&limit=6`
   )
     .then((res) => res.json())
     .then((data) => {
       if (data.success) {
-        setProjects(data.data);      // 👈 THIS WAS MISSING
+
+        // 🔥 FILTER HERE
+        const personalProjects = data.data.filter(
+          (project) => project.category?.toLowerCase() !== "freelance"
+        );
+
+        setProjects(personalProjects);
         setTotalPages(data.totalPages);
       }
     })
