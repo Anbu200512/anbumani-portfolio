@@ -22,6 +22,7 @@ function Home() {
 
   const [isMobile, setIsMobile] = useState(false);
   const [expandedId, setExpandedId] = useState(null);
+  
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/resume`)
       .then((res) => res.json())
@@ -34,19 +35,33 @@ function Home() {
   }, []);
 
   // Fetch Featured Projects
-  useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/projects?featured=true`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          const filtered = data.data.filter(
-            (project) => project.category !== "freelance",
-          );
-          setFeaturedProjects(filtered);
-        }
-      })
-      .catch((err) => console.error("Projects fetch error:", err));
-  }, []);
+useEffect(() => {
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/projects?featured=true`
+      );
+
+      if (!res.ok) throw new Error("Failed to fetch");
+
+      const data = await res.json();
+
+      if (data.success && Array.isArray(data.data)) {
+        const filtered = data.data.filter(
+          (project) => project.category !== "freelance"
+        );
+        setFeaturedProjects(filtered);
+      } else {
+        setFeaturedProjects([]);
+      }
+    } catch (err) {
+      console.error("Projects fetch error:", err);
+      setFeaturedProjects([]);
+    }
+  };
+
+  fetchProjects();
+}, []);
 
   // Fetch Skills
   useEffect(() => {
