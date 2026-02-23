@@ -321,35 +321,15 @@ useEffect(() => {
                 I focus on writing clean, scalable backend systems and designing
                 intuitive user experiences that feel modern and efficient.
               </p>
+              <button className="mt-6 px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full text-white font-medium hover:shadow-lg transition duration-300" 
+              onClick={() => window.location.href = "/about"}>
+                View More
+              </button>
             </div>
           </motion.div>
 
-          {/* Stats */}
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 40 },
-              show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-            }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16"
-          >
-            {[
-              { number: "10+", label: "Projects Built" },
-              { number: "1+", label: "Year Experience" },
-              { number: "100%", label: "Client Satisfaction" },
-              { number: "MERN", label: "Specialization" },
-            ].map((stat, i) => (
-              <motion.div
-                key={i}
-                whileHover={isMobile ? {} : { y: -10, scale: 1.05 }}
-                className="bg-slate-900 border border-slate-800 rounded-2xl p-5 md:p-6 shadow-lg"
-              >
-                <h3 className="text-2xl md:text-3xl font-bold text-blue-400">
-                  {stat.number}
-                </h3>
-                <p className="text-gray-400 mt-2 text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
+          {/* View More Button */}
+          
         </motion.div>
       </section>
 

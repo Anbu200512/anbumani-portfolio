@@ -7,62 +7,97 @@ function SkillsAdmin() {
     category: "frontend",
   });
 
-  const token = localStorage.getItem("adminToken");
+  // ✅ Correct token key (make sure login uses same key)
+  const token = localStorage.getItem("token");
 
+  const API = `${import.meta.env.VITE_API_URL}/api/skills`;
+
+  // 🔄 Fetch Skills (Protected)
   const fetchSkills = async () => {
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/skills`
-    );
-    const data = await res.json();
-    if (data.success) {
-      setSkills(data.data);
+    try {
+      const res = await fetch(API, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (res.status === 401) {
+        alert("Session expired. Please login again.");
+        return;
+      }
+
+      const data = await res.json();
+      if (data.success) {
+        setSkills(data.data);
+      }
+    } catch (error) {
+      console.error("Fetch Skills Error:", error);
     }
   };
 
   useEffect(() => {
-    fetchSkills();
+    if (token) {
+      fetchSkills();
+    }
   }, []);
 
+  // ➕ Add Skill
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/skills`,
-      {
+    try {
+      const res = await fetch(API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
+      });
+
+      if (res.status === 401) {
+        alert("Unauthorized. Please login again.");
+        return;
       }
-    );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.success) {
-      setFormData({ name: "", category: "frontend" });
-      fetchSkills();
+      if (data.success) {
+        setFormData({ name: "", category: "frontend" });
+        fetchSkills();
+      } else {
+        alert("Failed to add skill");
+      }
+    } catch (error) {
+      console.error("Add Skill Error:", error);
     }
   };
 
+  // ❌ Delete Skill
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Delete this skill?");
     if (!confirmDelete) return;
 
-    const res = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/skills/${id}`,
-      {
+    try {
+      const res = await fetch(`${API}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
+      });
 
-    const data = await res.json();
-    if (data.success) {
-      fetchSkills();
+      if (res.status === 401) {
+        alert("Unauthorized. Please login again.");
+        return;
+      }
+
+      const data = await res.json();
+
+      if (data.success) {
+        fetchSkills();
+      }
+    } catch (error) {
+      console.error("Delete Skill Error:", error);
     }
   };
 

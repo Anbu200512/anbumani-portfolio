@@ -59,6 +59,15 @@ function AdminLayout() {
             </Link>
 
             <Link
+              to="/admin/experience"
+              className="block hover:text-blue-400 transition"
+              onClick={() => setSidebarOpen(false)}
+            >
+              Experience
+            </Link>
+
+
+            <Link
               to="/admin/resume"
               className="block hover:text-blue-400 transition"
               onClick={() => setSidebarOpen(false)}
