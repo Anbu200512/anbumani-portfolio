@@ -8,8 +8,7 @@ function SkillsAdmin() {
   });
 
   // ✅ Correct token key (make sure login uses same key)
-  const token = localStorage.getItem("token");
-
+const token = localStorage.getItem("adminToken");
   const API = `${import.meta.env.VITE_API_URL}/api/skills`;
 
   // 🔄 Fetch Skills (Protected)
