@@ -65,7 +65,9 @@ function Navbar() {
           <Link to="/contact" className={linkClasses("/contact")} onClick={() => setMenuOpen(false)}>Contact</Link>
         </div>
       )}
-    </nav>
+    </nav> 
+  
+
   );
 }
 
