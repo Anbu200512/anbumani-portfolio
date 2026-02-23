@@ -18,8 +18,8 @@ import ResumeAdmin from "./admin/ResumeAdmin";
 import ProjectDetails from "./pages/ProjectDetails";
 import AdminCertificates from "./admin/AdminCertificates";
 import Certifications from "./pages/Certifications";
+import AdminExperience from "./admin/AdminExperience";
 import Experience from "./pages/Experience";
-
 function AnimatedRoutes() {
   const location = useLocation();
 
