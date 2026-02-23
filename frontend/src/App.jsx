@@ -16,6 +16,8 @@ import SkillsAdmin from "./admin/SkillsAdmin";
 import ScrollProgress from "./components/ScrollProgress";
 import ResumeAdmin from "./admin/ResumeAdmin";
 import ProjectDetails from "./pages/ProjectDetails";
+import AdminCertificates from "./admin/AdminCertificates";
+import Certifications from "./pages/Certifications";
 
 
 function AnimatedRoutes() {
@@ -44,6 +46,7 @@ function AnimatedRoutes() {
             <Route path="messages" element={<Messages />} />
             <Route path="skills" element={<SkillsAdmin />} />
             <Route path="resume" element={<ResumeAdmin />} />
+            <Route path="certificates" element={<AdminCertificates />} />
           </Route>
 
           {/* Public Layout */}
@@ -54,6 +57,7 @@ function AnimatedRoutes() {
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="freelance" element={<Freelance />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="/certifications" element={<Certifications />} />
           </Route>
         </Routes>
       </AnimatePresence>

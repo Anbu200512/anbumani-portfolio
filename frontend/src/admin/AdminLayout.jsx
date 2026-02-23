@@ -51,12 +51,20 @@ function AdminLayout() {
             </Link>
 
             <Link
-              to="/admin/resume" 
+              to="/admin/certificates"
+              className="block hover:text-blue-400 transition"
+              onClick={() => setSidebarOpen(false)}
+            >
+              Certificates
+            </Link>
+
+            <Link
+              to="/admin/resume"
               className="block hover:text-blue-400 transition"
               onClick={() => setSidebarOpen(false)}
             >
               Resume
-            </Link> 
+            </Link>
 
             <Link
               to="/admin/messages"

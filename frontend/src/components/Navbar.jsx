@@ -60,6 +60,7 @@ function Navbar() {
           <Link to="/" className={linkClasses("/")} onClick={() => setMenuOpen(false)}>Home</Link>
           <Link to="/about" className={linkClasses("/about")} onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/projects" className={linkClasses("/projects")} onClick={() => setMenuOpen(false)}>Projects</Link>
+          <Link to="/certifications" className={linkClasses("/certifications")} onClick={() => setMenuOpen(false)}>Certifications</Link>
           <Link to="/freelance" className={linkClasses("/freelance")} onClick={() => setMenuOpen(false)}>Freelance</Link>
           <Link to="/contact" className={linkClasses("/contact")} onClick={() => setMenuOpen(false)}>Contact</Link>
         </div>

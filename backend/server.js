@@ -7,6 +7,8 @@ import adminRoutes from "./routes/adminRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import skillRoutes from "./routes/skillRoutes.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
+import certificateRoutes from "./routes/certificateRoutes.js";
+
 
 
 dotenv.config();
@@ -22,6 +24,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/resume", resumeRoutes);
+app.use("/api/certificates", certificateRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
