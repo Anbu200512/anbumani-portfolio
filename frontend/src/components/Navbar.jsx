@@ -41,6 +41,7 @@ function Navbar() {
           <Link to="/about" className={linkClasses("/about")}>About</Link>
           <Link to="/projects" className={linkClasses("/projects")}>Projects</Link>
           <Link to="/certifications" className={linkClasses("/certifications")}>Certifications</Link>
+          <Link to="/experience" className={linkClasses("/experience")}>Experience</Link>
           <Link to="/freelance" className={linkClasses("/freelance")}>Freelance</Link>
           <Link to="/contact" className={linkClasses("/contact")}>Contact</Link>
         </div>
@@ -62,6 +63,7 @@ function Navbar() {
           <Link to="/about" className={linkClasses("/about")} onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/projects" className={linkClasses("/projects")} onClick={() => setMenuOpen(false)}>Projects</Link>
           <Link to="/certifications" className={linkClasses("/certifications")} onClick={() => setMenuOpen(false)}>Certifications</Link>
+          <Link to="/experience" className={linkClasses("/experience")} onClick={() => setMenuOpen(false)}>Experience</Link>
           <Link to="/freelance" className={linkClasses("/freelance")} onClick={() => setMenuOpen(false)}>Freelance</Link>
           <Link to="/contact" className={linkClasses("/contact")} onClick={() => setMenuOpen(false)}>Contact</Link>
         </div>

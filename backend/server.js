@@ -8,6 +8,7 @@ import projectRoutes from "./routes/projectRoutes.js";
 import skillRoutes from "./routes/skillRoutes.js";
 import resumeRoutes from "./routes/resumeRoutes.js";
 import certificateRoutes from "./routes/certificateRoutes.js";
+import experienceRoutes from "./routes/experienceRoutes.js";
 
 
 
@@ -25,6 +26,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/skills", skillRoutes);
 app.use("/api/resume", resumeRoutes);
 app.use("/api/certificates", certificateRoutes);
+app.use("/api/experience", experienceRoutes);
 
 // Test Route
 app.get("/", (req, res) => {

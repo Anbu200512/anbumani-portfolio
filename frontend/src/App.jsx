@@ -18,7 +18,7 @@ import ResumeAdmin from "./admin/ResumeAdmin";
 import ProjectDetails from "./pages/ProjectDetails";
 import AdminCertificates from "./admin/AdminCertificates";
 import Certifications from "./pages/Certifications";
-
+import Experience from "./pages/Experience";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -47,6 +47,7 @@ function AnimatedRoutes() {
             <Route path="skills" element={<SkillsAdmin />} />
             <Route path="resume" element={<ResumeAdmin />} />
             <Route path="certificates" element={<AdminCertificates />} />
+            <Route path="experience" element={<AdminExperience />} />
           </Route>
 
           {/* Public Layout */}
@@ -56,6 +57,7 @@ function AnimatedRoutes() {
             <Route path="projects" element={<Projects />} />
             <Route path="/projects/:id" element={<ProjectDetails />} />
             <Route path="freelance" element={<Freelance />} />
+            <Route path="experience" element={<Experience />} />
             <Route path="contact" element={<Contact />} />
             <Route path="/certifications" element={<Certifications />} />
           </Route>

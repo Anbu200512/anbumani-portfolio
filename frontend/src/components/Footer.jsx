@@ -34,6 +34,7 @@ function Footer({ resumeUrl }) {
             <li><a href="/about" className="hover:text-blue-400 transition">About</a></li>
             <li><a href="/projects" className="hover:text-blue-400 transition">Projects</a></li>
             <li><a href="/certifications" className="hover:text-blue-400 transition">Certifications</a></li>
+            <li><a href="/experience" className="hover:text-blue-400 transition">Experience</a></li>
             <li><a href="/freelance" className="hover:text-blue-400 transition">Freelance</a></li>
             <li><a href="/contact" className="hover:text-blue-400 transition">Contact</a></li>
           </ul>
