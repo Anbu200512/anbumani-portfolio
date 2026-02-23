@@ -26,3 +26,16 @@ export const deleteExperience = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+
+export const updateExperience = async (req, res) => {
+  try {
+    const updated = await Experience.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ success: true, data: updated });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
