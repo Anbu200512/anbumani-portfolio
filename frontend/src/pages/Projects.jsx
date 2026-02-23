@@ -21,6 +21,20 @@ function Projects() {
 
   const toggleExpand = (id) => { setExpandedId(expandedId === id ? null : id); };
 
+  useEffect(() => {
+  fetch(
+    `${import.meta.env.VITE_API_URL}/api/projects?page=${currentPage}&limit=6`
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        setProjects(data.data);      // 👈 THIS WAS MISSING
+        setTotalPages(data.totalPages);
+      }
+    })
+    .catch((err) => console.log("Error:", err));
+}, [currentPage]);
+
   return (
     <div className="relative max-w-6xl mx-auto py-20 md:py-24 px-6 overflow-hidden">
       {/* Background Glow */}

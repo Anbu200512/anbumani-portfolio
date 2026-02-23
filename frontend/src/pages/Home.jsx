@@ -21,7 +21,7 @@ function Home() {
   const [resumeName, setResumeName] = useState("");
 
   const [isMobile, setIsMobile] = useState(false);
-
+  const [expandedId, setExpandedId] = useState(null);
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/resume`)
       .then((res) => res.json())
@@ -487,9 +487,23 @@ function Home() {
                     {project.title}
                   </h3>
 
+                  {/* Description */}
                   <p className="text-gray-300 text-sm mb-4 leading-relaxed">
-                    {project.description?.slice(0, 90)}...
+                    {expandedId === project._id
+                      ? project.description
+                      : project.description?.slice(0, 90) + "..."}
                   </p>
+
+                  <button
+                    onClick={() =>
+                      setExpandedId(
+                        expandedId === project._id ? null : project._id,
+                      )
+                    }
+                    className="text-sm text-blue-400 hover:text-blue-300 transition"
+                  >
+                    {expandedId === project._id ? "View Less ↑" : "View More ↓"}
+                  </button>
 
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -505,13 +519,6 @@ function Home() {
 
                   {/* Buttons Row */}
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <Link
-                      to={`/projects/${project._id}`}
-                      className="text-sm text-blue-400 hover:text-blue-300 transition"
-                    >
-                      View Details →
-                    </Link>
-
                     <div className="flex gap-3">
                       {project.github && (
                         <motion.a
